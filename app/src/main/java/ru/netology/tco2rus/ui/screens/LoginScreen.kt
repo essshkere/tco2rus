@@ -11,11 +11,14 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 
 @Composable
-fun LoginScreen(navController: NavController) {
+fun LoginScreen(
+    navController: NavController,
+    onLoginSuccess: () -> Unit
+) {
     Column(modifier = Modifier.padding(16.dp)) {
         TextField(value = "", onValueChange = {}, label = { Text("Логин") })
         TextField(value = "", onValueChange = {}, label = { Text("Пароль") })
-        Button(onClick = { navController.navigate("home") }) {
+        Button(onClick = onLoginSuccess) {
             Text("Войти")
         }
     }

@@ -23,6 +23,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <meta-data
+            android:name="com.yandex.maps.mobile.apikey"
+            android:value="3acbd28e-158e-4f9e-b033-88b0f41418ed" />
     </application>
 
 </manifest>

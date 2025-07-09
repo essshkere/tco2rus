@@ -20,10 +20,7 @@ fun AppNavigation() {
         startDestination = "login"
     ) {
         composable("login") {
-            LoginScreen(
-                navController = navController,
-                onLoginSuccess = { navController.navigate("home") }
-            )
+            LoginScreen(navController = navController)
         }
 
         composable("home") {

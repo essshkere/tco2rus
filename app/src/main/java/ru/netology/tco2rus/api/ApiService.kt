@@ -7,7 +7,18 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 import ru.netology.tco2rus.api.dto.*
 
+data class AuthRequest(
+    val email: String,
+    val password: String
+)
+
+data class AuthResponse(
+    val token: String,
+    val userId: Long
+)
+
 interface ApiService {
+
     @GET("orders")
     suspend fun getActiveOrders(
         @Header("Authorization") apiKey: String = "c1378193-bc0e-42c8-a502-b8d66d189617"
@@ -32,4 +43,11 @@ interface ApiService {
 
     @GET("orders")
     suspend fun getActiveOrders(): List<OrderDto>
+
+    @POST("auth/login")
+    suspend fun login(@Body request: AuthRequest): AuthResponse
+
+    @POST("auth/register")
+    suspend fun register(@Body request: AuthRequest): AuthResponse
+
 }

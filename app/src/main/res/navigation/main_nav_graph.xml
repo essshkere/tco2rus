@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="ru.netology.tco2rus.activity.LoginFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_login">
+
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+
+        <action
+            android:id="@+id/action_loginFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="ru.netology.tco2rus.activity.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home">
+
+        <action
+            android:id="@+id/action_homeFragment_to_ordersFragment"
+            app:destination="@id/ordersFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/ordersFragment"
+        android:name="ru.netology.tco2rus.activity.OrdersFragment"
+        android:label="Orders"
+        tools:layout="@layout/fragment_orders">
+        <action
+            android:id="@+id/action_ordersFragment_to_orderDetailsFragment"
+            app:destination="@id/orderDetailsFragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/orderDetailsFragment"
+        android:name="ru.netology.tco2rus.activity.OrderDetailsFragment"
+        android:label="OrderDetailsFragment">
+
+        <action
+            android:id="@+id/action_orderDetailsFragment_to_routeFragment"
+            app:destination="@id/routeFragment">
+            <argument
+                android:name="fromLat"
+                app:argType="float" />
+            <argument
+                android:name="fromLon"
+                app:argType="float" />
+            <argument
+                android:name="toLat"
+                app:argType="float" />
+            <argument
+                android:name="toLon"
+                app:argType="float" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/routeFragment"
+        android:name="ru.netology.tco2rus.activity.RouteFragment"
+        android:label="RouteFragment" />
+
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="ru.netology.tco2rus.activity.HistoryFragment"
+        android:label="История">
+        <action
+            android:id="@+id/action_history_to_orderDetails"
+            app:destination="@id/orderDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="ru.netology.tco2rus.activity.RegisterFragment"
+        android:label="Регистрация">
+        <action
+            android:id="@+id/action_registerFragment_to_loginFragment"
+            app:destination="@id/loginFragment"/>
+        <action
+            android:id="@+id/action_registerFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="ru.netology.tco2rus.activity.ProfileFragment"
+        android:label="Профиль">
+    </fragment>
+
+    <fragment
+        android:id="@+id/supportFragment"
+        android:name="ru.netology.tco2rus.activity.SupportFragment"
+        android:label="Техподдержка">
+    </fragment>
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="ru.netology.tco2rus.activity.SettingsFragment"
+        android:label="Настройки">
+        <action
+            android:id="@+id/action_settingsFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+</navigation>

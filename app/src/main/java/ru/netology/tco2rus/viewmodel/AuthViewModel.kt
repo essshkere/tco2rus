@@ -1,4 +1,4 @@
-package ru.netology.tco2rus.viewModel
+package ru.netology.tco2rus.viewmodel
 
 import android.content.SharedPreferences
 import androidx.core.content.edit

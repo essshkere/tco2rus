@@ -6,4 +6,4 @@ data class ProfileDto(
     @SerializedName("name") val name: String,
     @SerializedName("email") val email: String,
 
-)
+    )

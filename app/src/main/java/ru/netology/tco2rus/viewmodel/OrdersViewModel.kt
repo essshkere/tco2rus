@@ -1,4 +1,4 @@
-package ru.netology.tco2rus.viewModel
+package ru.netology.tco2rus.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -8,8 +8,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import ru.netology.tco2rus.api.ApiService
-import ru.netology.tco2rus.api.dto.OrderStatusRequest
 import ru.netology.tco2rus.data.Order
+import ru.netology.tco2rus.api.dto.OrderStatusRequest
 import ru.netology.tco2rus.data.OrderMapper
 import ru.netology.tco2rus.data.OrderStatus
 import javax.inject.Inject

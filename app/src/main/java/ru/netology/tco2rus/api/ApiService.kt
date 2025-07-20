@@ -4,37 +4,61 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Path
 import ru.netology.tco2rus.api.dto.*
-
-data class AuthRequest(
-    val email: String,
-    val password: String
-)
-
-data class AuthResponse(
-    val token: String,
-    val userId: Long
-)
+import ru.netology.tco2rus.api.dto.SupportMessageRequest
 
 interface ApiService {
 
-    @GET("orders")
-    suspend fun getActiveOrders(
-        @Header("Authorization") apiKey: String = "c1378193-bc0e-42c8-a502-b8d66d189617"
-    ): List<OrderDto>
+    @POST("auth/register")
+    suspend fun register(
+        @Body request: RegisterRequest
+    ): RegisterResponse
+
+    @POST("auth/change-password")
+    suspend fun changePassword(
+        @Body request: ChangePasswordRequest,
+        @Header("Authorization") token: String
+    )
+
+    @POST("support/message")
+    suspend fun sendSupportMessage(
+        @Body request: SupportMessageRequest,
+        @Header("Authorization") token: String
+    )
+
+    @POST("support/call")
+    suspend fun logSupportCall(
+        @Header("Authorization") token: String
+    )
+
+    @PUT("profile")
+    suspend fun updateProfile(
+        @Body profile: DriverProfileDto,
+        @Header("Authorization") token: String
+    )
+
+    @GET("profile")
+    suspend fun getDriverProfile(
+        @Header("Authorization") token: String
+    ): DriverProfileDto
+
+    @GET("history")
+    suspend fun getHistoryOrders(
+        @Header("Authorization") token: String
+    ): List<HistoryOrderDto>
 
     @GET("history")
     suspend fun getHistory(
         @Header("Authorization") apiKey: String = "c1378193-bc0e-42c8-a502-b8d66d189617"
     ): List<HistoryOrderDto>
 
-    @POST("orders/{id}/status")
-    suspend fun updateOrderStatus(
+    @GET("orders/{id}")
+    suspend fun getOrderDetails(
         @Path("id") orderId: Long,
-        @Body status: OrderStatusRequest,
-        @Header("Authorization") apiKey: String = "c1378193-bc0e-42c8-a502-b8d66d189617"
-    )
+        @Header("Authorization") token: String
+    ): OrderDto
 
     @GET("profile")
     suspend fun getProfile(
@@ -44,10 +68,15 @@ interface ApiService {
     @GET("orders")
     suspend fun getActiveOrders(): List<OrderDto>
 
-    @POST("auth/login")
-    suspend fun login(@Body request: AuthRequest): AuthResponse
+    @GET("orders/active")
+    suspend fun getActiveOrders(
+        @Header("Authorization") token: String
+    ): List<OrderDto>
 
-    @POST("auth/register")
-    suspend fun register(@Body request: AuthRequest): AuthResponse
-
+    @POST("orders/{id}/status")
+    suspend fun updateOrderStatus(
+        @Path("id") orderId: Long,
+        @Body status: OrderStatusRequest,
+        @Header("Authorization") token: String
+    )
 }

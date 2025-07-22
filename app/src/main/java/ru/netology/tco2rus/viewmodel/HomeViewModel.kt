@@ -22,7 +22,7 @@ class HomeViewModel @Inject constructor(
 
     fun loadRoute(orderId: Long) {
         viewModelScope.launch {
-            val order = ordersRepository.getOrder(orderId)
+            val order = ordersRepository.getOrderDetails(orderId)
             _routePoints.value = mapRepository.getRoutePoints(
                 fromLat = order.fromLat,
                 fromLon = order.fromLon,

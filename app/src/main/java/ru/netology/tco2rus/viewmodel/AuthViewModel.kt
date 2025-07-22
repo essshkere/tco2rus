@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import ru.netology.tco2rus.api.ApiService
-import ru.netology.tco2rus.api.AuthRequest
+import ru.netology.tco2rus.api.dto.AuthRequest
 import javax.inject.Inject
 
 

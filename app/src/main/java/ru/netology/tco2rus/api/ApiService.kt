@@ -79,4 +79,11 @@ interface ApiService {
         @Body status: OrderStatusRequest,
         @Header("Authorization") token: String
     )
+    @POST("auth/login")
+    suspend fun login(@Body request: AuthRequest): AuthResponse
 }
+
+data class ChangePasswordRequest(
+    val currentPassword: String,
+    val newPassword: String
+)

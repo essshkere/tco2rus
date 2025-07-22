@@ -16,9 +16,10 @@ class ProfileRepository @Inject constructor(
     suspend fun updateProfile(profile: DriverProfile) {
         api.updateProfile(
             DriverProfileDto(
-                name = profile.fullName,
-                email = profile.email,
+                id = profile.id,
+                fullName = profile.fullName,
                 phone = profile.phone,
+                email = profile.email,
                 columnNumber = profile.columnNumber,
                 columnPhone = profile.columnPhone,
                 logistPhone = profile.logistPhone,

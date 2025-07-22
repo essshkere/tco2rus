@@ -1,18 +1,23 @@
 package ru.netology.tco2rus.repository
 
-import android.content.SharedPreferences
 import ru.netology.tco2rus.api.ApiService
-import ru.netology.tco2rus.api.dto.HistoryOrderDto
-import ru.netology.tco2rus.api.dto.RegisterRequest
-import ru.netology.tco2rus.data.HistoryOrder
+import ru.netology.tco2rus.api.ChangePasswordRequest
+import ru.netology.tco2rus.api.dto.AuthRequest
 import javax.inject.Inject
 
 class AuthRepository @Inject constructor(
     private val api: ApiService,
     private val tokenManager: TokenManager
 ) {
-    suspend fun register(request: RegisterRequest) {
-        val response = api.register(request)
+    suspend fun login(email: String, password: String) {
+        val response = api.login(AuthRequest(email, password))
         tokenManager.saveToken(response.token)
+    }
+
+    suspend fun changePassword(currentPassword: String, newPassword: String) {
+        api.changePassword(
+            ChangePasswordRequest(currentPassword, newPassword),
+            tokenManager.getToken()
+        )
     }
 }

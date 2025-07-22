@@ -13,8 +13,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import ru.netology.tco2rus.R
-import ru.netology.tco2rus.api.dto.Order
+import ru.netology.tco2rus.data.Order
 import ru.netology.tco2rus.data.OrderStatus
 import ru.netology.tco2rus.databinding.FragmentOrderDetailsBinding
 import ru.netology.tco2rus.viewmodel.OrderDetailsViewModel

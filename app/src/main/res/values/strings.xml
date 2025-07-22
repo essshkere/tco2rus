@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">tco2rus</string>
+    <string name="login_hint">Email или логин</string>
+    <string name="password_hint">Пароль</string>
+    <string name="login_button">Войти</string>
+    <string name="register_link">Нет аккаунта? Зарегистрироваться</string>
+    <string name="menu_home">Главная</string>
+    <string name="menu_orders">Заказы</string>
+    <string name="menu_history">История</string>
+    <string name="menu_profile">Профиль</string>
 </resources>

@@ -12,11 +12,13 @@ import ru.netology.tco2rus.data.Order
 import ru.netology.tco2rus.api.dto.OrderStatusRequest
 import ru.netology.tco2rus.data.OrderMapper
 import ru.netology.tco2rus.data.OrderStatus
+import ru.netology.tco2rus.repository.TokenManager
 import javax.inject.Inject
 
 @HiltViewModel
 class OrdersViewModel @Inject constructor(
-    private val api: ApiService
+    private val api: ApiService,
+    private val tokenManager: TokenManager
 ) : ViewModel() {
     private val _activeOrders = MutableStateFlow<List<Order>>(emptyList())
     val activeOrders: StateFlow<List<Order>> = _activeOrders.asStateFlow()
@@ -36,7 +38,7 @@ class OrdersViewModel @Inject constructor(
             _isLoading.value = true
             _error.value = null
             try {
-                val ordersDto = api.getActiveOrders()
+                val ordersDto = api.getActiveOrders(tokenManager.getToken())
                 _activeOrders.value = ordersDto.map { OrderMapper.fromDto(it) }
             } catch (e: Exception) {
                 _error.value = "Failed to load orders: ${e.message}"
@@ -50,7 +52,11 @@ class OrdersViewModel @Inject constructor(
         viewModelScope.launch {
             _isLoading.value = true
             try {
-                api.updateOrderStatus(orderId, OrderStatusRequest(status))
+                api.updateOrderStatus(
+                    orderId,
+                    OrderStatusRequest(status),
+                    tokenManager.getToken()
+                )
                 loadOrders()
             } catch (e: Exception) {
                 _error.value = "Failed to update status: ${e.message}"

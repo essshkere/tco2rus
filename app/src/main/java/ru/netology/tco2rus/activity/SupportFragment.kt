@@ -1,25 +1,19 @@
 package ru.netology.tco2rus.activity
 
+import android.content.ActivityNotFoundException
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import ru.netology.tco2rus.R
-import ru.netology.tco2rus.adapter.OrdersAdapter
-import ru.netology.tco2rus.data.DriverProfile
-import ru.netology.tco2rus.databinding.FragmentOrdersBinding
-import ru.netology.tco2rus.databinding.FragmentProfileBinding
 import ru.netology.tco2rus.databinding.FragmentSupportBinding
-import ru.netology.tco2rus.viewmodel.OrdersViewModel
-import ru.netology.tco2rus.viewmodel.ProfileViewModel
 import ru.netology.tco2rus.viewmodel.SupportViewModel
 
 @AndroidEntryPoint
@@ -101,7 +95,7 @@ class SupportFragment : Fragment() {
 
         try {
             startActivity(Intent.createChooser(emailIntent, "Отправить через"))
-            viewModel.logCall() // Логируем факт обращения
+            viewModel.logCall()
         } catch (e: ActivityNotFoundException) {
             Toast.makeText(requireContext(), "Не найдено приложение для отправки email", Toast.LENGTH_SHORT).show()
         }

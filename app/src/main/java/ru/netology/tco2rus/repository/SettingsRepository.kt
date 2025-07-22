@@ -2,9 +2,7 @@ package ru.netology.tco2rus.repository
 
 import android.content.SharedPreferences
 import ru.netology.tco2rus.api.ApiService
-import ru.netology.tco2rus.api.dto.ChangePasswordRequest
-import ru.netology.tco2rus.api.dto.HistoryOrderDto
-import ru.netology.tco2rus.data.HistoryOrder
+import ru.netology.tco2rus.api.ChangePasswordRequest
 import javax.inject.Inject
 
 class SettingsRepository @Inject constructor(

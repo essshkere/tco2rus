@@ -3,6 +3,7 @@ package ru.netology.tco2rus.repository
 import ru.netology.tco2rus.api.ApiService
 import ru.netology.tco2rus.api.ChangePasswordRequest
 import ru.netology.tco2rus.api.dto.AuthRequest
+import ru.netology.tco2rus.api.dto.RegisterRequest
 import javax.inject.Inject
 
 class AuthRepository @Inject constructor(
@@ -19,5 +20,9 @@ class AuthRepository @Inject constructor(
             ChangePasswordRequest(currentPassword, newPassword),
             tokenManager.getToken()
         )
+    }
+    suspend fun register(request: RegisterRequest) {
+        val response = api.register(request)
+        tokenManager.saveToken(response.token)
     }
 }

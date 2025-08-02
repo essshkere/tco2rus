@@ -13,6 +13,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import ru.netology.tco2rus.R
 import ru.netology.tco2rus.data.Order
 import ru.netology.tco2rus.data.OrderStatus
 import ru.netology.tco2rus.databinding.FragmentOrderDetailsBinding
@@ -136,13 +137,13 @@ class OrderDetailsFragment : Fragment() {
 
     private fun openMapWithRoute() {
         viewModel.order.value?.let { order ->
-            val action = OrderDetailsFragmentDirections.actionOrderDetailsFragmentToRouteFragment(
-                fromLat = order.fromLat.toFloat(),
-                fromLon = order.fromLon.toFloat(),
-                toLat = order.toLat.toFloat(),
-                toLon = order.toLon.toFloat()
-            )
-            findNavController().navigate(action)
+            val bundle = Bundle().apply {
+                putFloat("fromLat", order.fromLat.toFloat())
+                putFloat("fromLon", order.fromLon.toFloat())
+                putFloat("toLat", order.toLat.toFloat())
+                putFloat("toLon", order.toLon.toFloat())
+            }
+            findNavController().navigate(R.id.action_orderDetailsFragment_to_routeFragment, bundle)
         } ?: Toast.makeText(context, "Данные маршрута недоступны", Toast.LENGTH_SHORT).show()
     }
 

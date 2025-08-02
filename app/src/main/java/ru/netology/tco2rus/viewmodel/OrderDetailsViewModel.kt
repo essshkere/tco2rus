@@ -2,14 +2,17 @@ package ru.netology.tco2rus.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import ru.netology.tco2rus.data.Order
 import ru.netology.tco2rus.data.OrderStatus
 import ru.netology.tco2rus.repository.OrdersRepository
+import javax.inject.Inject
 
-class OrderDetailsViewModel(
+@HiltViewModel
+class OrderDetailsViewModel @Inject constructor(
     private val repository: OrdersRepository
 ) : ViewModel() {
     private val _order = MutableStateFlow<Order?>(null)

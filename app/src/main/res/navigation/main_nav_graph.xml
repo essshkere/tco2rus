@@ -46,7 +46,6 @@
         android:id="@+id/orderDetailsFragment"
         android:name="ru.netology.tco2rus.activity.OrderDetailsFragment"
         android:label="OrderDetailsFragment">
-
         <action
             android:id="@+id/action_orderDetailsFragment_to_routeFragment"
             app:destination="@id/routeFragment">

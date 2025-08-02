@@ -15,6 +15,7 @@ import ru.netology.tco2rus.R
 import ru.netology.tco2rus.data.DriverProfile
 import ru.netology.tco2rus.databinding.FragmentProfileBinding
 import ru.netology.tco2rus.viewmodel.ProfileViewModel
+import de.hdodenhof.circleimageview.CircleImageView
 
 @AndroidEntryPoint
 class ProfileFragment : Fragment() {

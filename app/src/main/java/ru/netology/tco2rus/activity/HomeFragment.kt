@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.yandex.mapkit.Animation
 import com.yandex.mapkit.MapKitFactory
 import com.yandex.mapkit.geometry.Point
 import com.yandex.mapkit.geometry.Polyline
@@ -48,9 +49,22 @@ class HomeFragment : Fragment() {
     }
 
     private fun drawRoute(points: List<Point>) {
-        val mapObjects = mapView.map.mapObjects
+        if (points.isEmpty()) return
+
+        val mapObjects = mapView.mapWindow.map.mapObjects
+        mapObjects.clear()
         mapObjects.addPolyline(Polyline(points))
-        mapView.map.move(CameraPosition(points[0], 10f, 0f, 0f))
+
+        mapView.mapWindow.map.move(
+            CameraPosition(
+                points[0],
+                14f,
+                0f,
+                0f
+            ),
+            Animation(Animation.Type.SMOOTH, 1f),
+            null
+        )
     }
 
     override fun onStart() {
